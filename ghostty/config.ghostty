@@ -1,0 +1,12 @@
+theme = Rose Pine Moon
+
+window-decoration = false
+
+font-size = 15
+
+window-padding-x = 10
+
+background-opacity = 0.95
+
+font-family = "JetBrainsMono Nerd Font"
+font-family = "Noto Sans CJK JP"
