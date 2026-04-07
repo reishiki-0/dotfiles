@@ -1,0 +1,213 @@
+spawn-at-startup "awww-daemon"
+spawn-sh-at-startup "sleep 0.5 awww img ~/Pictures/Wallpaper/1.png"
+spawn-sh-at-startup "flatpak run app.zen_browser.zen"
+spawn-sh-at-startup "sleep 0.8 && flatpak run org.telegram.desktop"
+spawn-sh-at-startup "sleep 3 && ghostty"
+
+prefer-no-csd
+
+workspace "1"
+workspace "2"
+workspace "3"
+
+xwayland-satellite {
+    path "xwayland-satellite"
+}
+
+gestures {
+    hot-corners {
+        top-left
+    }
+}
+
+hotkey-overlay {
+    skip-at-startup
+}
+
+// -----------------------------------------------------------------------
+
+cursor {
+    xcursor-theme "BreezeX-RosePine-Linux"
+    xcursor-size 40
+    hide-after-inactive-ms 4000
+}
+
+input {
+
+    focus-follows-mouse max-scroll-amount="0%"
+    warp-mouse-to-focus mode="center-xy"
+
+    keyboard {
+        xkb {
+            layout "us,ru"
+            options "grp:win_space_toggle,compose:ralt,ctrl:nocaps"
+        }
+        numlock
+    }
+
+    touchpad {
+        tap
+        dwt
+        disabled-on-external-mouse
+    }
+
+    mouse { }
+    trackpoint { }
+}
+
+output "eDP-1" {
+    mode "1920x1200@60.0"
+    scale 1
+    transform "normal"
+    position x=1280 y=0
+}
+
+layout {
+    background-color "transparent"
+    gaps 0
+    always-center-single-column 
+    center-focused-column "never"
+    preset-column-widths {
+        proportion 0.5
+        proportion 0.6
+        proportion 0.75
+    }
+
+    focus-ring {
+        off
+        width 5
+        active-color "#540b6a"
+    }
+    border { 
+      width 5
+    	active-color "#8847B4"
+      inactive-color "#393552ee"
+    }
+    shadow { 
+    	off
+    }
+}
+
+screenshot-path null /* "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png" */
+
+window-rule {
+    match app-id=r#"app.zen_browser.zen$"# title="^Picture-in-Picture$"
+    open-floating true
+}
+window-rule {
+    match title="DBeaver 26.0.1 "
+    open-fullscreen true
+    open-on-workspace "3"
+}
+window-rule {
+    match title="Windows RDP Session [192.168.122.2]"
+    open-maximized true
+    open-on-workspace "3"
+}
+window-rule {
+    match app-id="app.zen_browser.zen"
+    open-fullscreen true
+    open-on-workspace "2"
+}
+window-rule {
+    match app-id="org.telegram.desktop"
+    open-on-workspace "2"
+    default-column-width {
+	  proportion 0.5
+    }
+}
+window-rule {
+    match app-id="com.mitchellh.ghostty"
+    draw-border-with-background false
+    open-on-workspace "1"    
+    open-maximized true
+}
+window-rule {
+    geometry-corner-radius 0
+    clip-to-geometry true
+}
+
+layer-rule {
+    match namespace="awww-daemon"
+    place-within-backdrop true
+}
+
+overview {
+    workspace-shadow {
+      off
+    }
+    zoom 0.6
+}
+
+binds {
+    Mod+T { spawn "ghostty"; }
+    Mod+E { spawn "fuzzel"; }
+
+    XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"; }
+    XF86AudioMute        allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
+    XF86AudioMicMute     allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
+    XF86AudioPlay        allow-when-locked=true { spawn-sh "playerctl play-pause"; }
+    XF86AudioStop        allow-when-locked=true { spawn-sh "playerctl stop"; }
+    XF86AudioPrev        allow-when-locked=true { spawn-sh "playerctl previous"; }
+    XF86AudioNext        allow-when-locked=true { spawn-sh "playerctl next"; }
+    XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+10%"; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "10%-"; }
+
+    Mod+O repeat=false { toggle-overview; }
+    Mod+Q repeat=false { close-window; }
+
+    Mod+A         { focus-column-left; }
+    Mod+D         { focus-column-right; }
+    Mod+Shift+A     { move-column-left; }
+    Mod+Shift+D     { move-column-right; }
+
+    Mod+S              { focus-workspace-down; }
+    Mod+W              { focus-workspace-up; }
+    Mod+Shift+S        { move-column-to-workspace-down; }
+    Mod+Shift+W        { move-column-to-workspace-up; }
+
+    Mod+1 { focus-workspace 1; }
+    Mod+2 { focus-workspace 2; }
+    Mod+3 { focus-workspace 3; }
+    Mod+4 { focus-workspace 4; }
+    Mod+5 { focus-workspace 5; }
+    Mod+6 { focus-workspace 6; }
+    Mod+7 { focus-workspace 7; }
+    Mod+8 { focus-workspace 8; }
+    Mod+9 { focus-workspace 9; }
+    Mod+Shift+1 { move-column-to-workspace 1; }
+    Mod+Shift+2 { move-column-to-workspace 2; }
+    Mod+Shift+3 { move-column-to-workspace 3; }
+    Mod+Shift+4 { move-column-to-workspace 4; }
+    Mod+Shift+5 { move-column-to-workspace 5; }
+    Mod+Shift+6 { move-column-to-workspace 6; }
+    Mod+Shift+7 { move-column-to-workspace 7; }
+    Mod+Shift+8 { move-column-to-workspace 8; }
+    Mod+Shift+9 { move-column-to-workspace 9; }
+
+    Mod+BracketLeft  { consume-or-expel-window-left; }
+    Mod+BracketRight { consume-or-expel-window-right; }
+
+    Mod+R { switch-preset-column-width; }
+    Mod+F { maximize-column; }
+    Mod+Shift+F { fullscreen-window; }
+    Mod+C { center-column; }
+
+    Mod+Minus { set-column-width "-10%"; }
+    Mod+Equal { set-column-width "+10%"; }
+
+    Mod+Shift+Minus { set-window-height "-10%"; }
+    Mod+Shift+Equal { set-window-height "+10%"; }
+
+    Mod+V       { toggle-window-floating; }
+    Mod+Shift+V { switch-focus-between-floating-and-tiling; }
+
+    Print { screenshot; }
+    Ctrl+Print { screenshot-screen; }
+    Alt+Print { screenshot-window; }
+
+    Ctrl+Alt+Delete { quit; }
+
+    Mod+Shift+P { power-off-monitors; }
+}
