@@ -1,0 +1,130 @@
+{
+	"$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+	
+	"logo":
+	{
+		"color": {"1": "magenta", "2": "magenta"},
+		"source": "/home/reishiki/.config/fastfetch/logo.txt"
+	},
+	
+	"display":
+	{
+		"separator": "  ",
+		"color": "white"
+  },
+
+    "modules":
+	[
+
+    {
+        "type": "custom",
+        "formant": " "
+    },
+
+    {
+        "type": "custom",
+        "format": " ソフト"
+    },
+
+    {
+        "type": "custom",
+        "format": "┌─────────────────────────────────────┐"
+    },
+
+    {
+        "type": "command",
+        "format": "{>29} |",
+        "key": "| User",
+        "keyColor": "red",
+        "text": "printf reishiki"
+    },
+
+    {
+        "type": "os",
+        "format": "{name>24} {arch} |",
+        "key": "| OS",
+        "keyColor": "red"
+    },
+
+    {
+        "type": "uptime",
+        "format": "{formatted>27} |",
+        "key": "| Uptime",
+        "keyColor": "red"
+    },
+
+    {
+        "type": "command",
+        "format": "{>27} |",
+        "key": "| OS Age",
+        "keyColor": "yellow",
+        "text": "birth_install=$(stat -c %W /); current=$(date +%s); time_progression=$((current - birth_install)); days_difference=$((time_progression / 86400)); echo $days_difference days"
+    },
+
+    {
+        "type": "wm",
+        "format": "{>15} {version} ({protocol-name}) |",
+        "key": "| WM",
+        "keyColor": "yellow"
+    },
+
+    {
+        "type": "terminal",
+        "format": "{>13} {version} |",
+        "key": "| Terminal",
+        "keyColor": "yellow"
+    },
+
+    {
+        "type": "packages",
+        "format": "{all>25} |",
+        "key": "| Packages",
+        "keyColor": "yellow"
+    },
+
+    {
+        "type": "custom",
+        "format": "└─────────────────────────────────────┘"
+    },
+
+    "break",
+
+    {
+        "type": "custom",
+        "format": " ハード"
+    },
+
+    {
+        "type": "custom",
+        "format": "┌─────────────────────────────────────┐"
+    },
+
+    {
+        "type": "cpu",
+        "format": "{1>30} |",
+        "key": "| CPU",
+        "keyColor": "green"
+    },
+
+    {
+        "type": "command",
+        "format": "{>30} |",
+        "key": "| SSD",
+        "keyColor": "green",
+        "text": "df -h / | awk 'NR==2{printf \"%s / %s\", $3, $2}'"
+    },
+
+    {
+        "type": "command",
+        "format": "{>30} |",
+        "key": "| RAM",
+        "keyColor": "green",
+        "text": "free -m | awk 'NR==2{printf \"%.2f GiB / %.2f GiB\",$3/1024,$2/1024}'"
+    },
+
+    {
+        "type": "custom",
+        "format": "└─────────────────────────────────────┘"
+    }
+  ]
+}
