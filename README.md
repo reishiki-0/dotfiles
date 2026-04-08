@@ -1,5 +1,3 @@
-# dotfiles
-
 ```
 dotfiles
     ├── fastfetch
