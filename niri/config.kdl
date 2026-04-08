@@ -2,7 +2,7 @@ spawn-at-startup "awww-daemon"
 spawn-sh-at-startup "sleep 0.5 awww img ~/Pictures/Wallpaper/1.png"
 spawn-sh-at-startup "flatpak run app.zen_browser.zen"
 spawn-sh-at-startup "sleep 0.8 && flatpak run org.telegram.desktop"
-spawn-sh-at-startup "sleep 3 && ghostty"
+spawn-sh-at-startup "sleep 3.3 && ghostty"
 
 prefer-no-csd
 
@@ -79,8 +79,8 @@ layout {
         active-color "#540b6a"
     }
     border { 
-      width 5
-    	active-color "#8847B4"
+      width 3
+    	active-color "#c4a7e7"
       inactive-color "#393552ee"
     }
     shadow { 
@@ -97,6 +97,10 @@ window-rule {
 window-rule {
     match title="DBeaver 26.0.1 "
     open-fullscreen true
+    open-on-workspace "3"
+}
+window-rule {
+    match title="Dbeaver*"
     open-on-workspace "3"
 }
 window-rule {
