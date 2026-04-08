@@ -1,5 +1,6 @@
 # dotfiles
 
+```
 dotfiles
     ├── fastfetch
     │   ├── config.jsonc
@@ -13,3 +14,4 @@ dotfiles
     ├── niri
     │   └── config.kdl
     └── README.md
+```
